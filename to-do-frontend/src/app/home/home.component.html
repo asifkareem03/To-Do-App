@@ -1,0 +1,53 @@
+<body>
+    <!-- navigation  bar-->
+    <nav class="navbar navbar-expand-lg header-logo">
+        <div class="container">
+            <div class="logo-section">
+                <a class="navbar-brand text-white" href="#">
+                    <i class="fas fa-sticky-note" style="padding-right: 5px;"></i>To-Do
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- login box -->
+    <main class="main-div" style="padding:40px 0;">
+        <div class="login-container">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <h3 class="login-header">Log in</h3>
+                    <div class="login-box">
+                        <div class="login-box-content">
+                            <form [formGroup]="loginForm" (ngSubmit)="login()">
+                                <div class="mb-3">
+                                    <label for="user_name" class="form-label label">User Name</label>
+                                    <input type="text" name="account_name" class="form-control large" id="user_name"
+                                        formControlName="username" autocomplete="off">
+                                    <span *ngIf="(this.loginForm.get('username')?.touched|| this.loginForm.get('username')?.dirty)&&
+                                this.loginForm.get('username')?.errors" style="color:red;font-size: 13px;">Invalid User Name </span>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="user_password" class="form-label label">Password</label>
+                                    <input type="password" name="account_password" class="form-control large"
+                                        id="user_password" formControlName="pwd">
+                                    <span *ngIf="(this.loginForm.get('pwd')?.touched|| this.loginForm.get('pwd')?.dirty)&&
+                                            this.loginForm.get('pwd')?.errors" style="color:red;font-size: 13px;">Invalid Password
+                                    </span>
+                                </div>
+                                <button type="submit" class="btn btn-primary login-btn">Log in</button>
+                            </form>
+                            <div class="signup-div">
+                                <a routerLink="register">
+                                    <span style="color:#656565;">Don’t have an account?</span>
+                                    Sign up!
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+    </main>
+</body>

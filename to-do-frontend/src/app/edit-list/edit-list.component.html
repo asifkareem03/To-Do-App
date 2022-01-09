@@ -1,0 +1,26 @@
+<body>
+    <nav class="navbar navbar-expand-lg header-logo">
+      <div class="container">
+        <div class="logo-section">
+          <a class="navbar-brand text-white" href="#">
+            <i class="fas fa-sticky-note" style="padding-right: 5px;"></i>To-Do
+          </a>
+        </div>
+      </div>
+    </nav>
+  
+    
+  
+    <div class="centered-content">
+      <div class="modal-box">
+        <h1 class="title">
+          Edit list
+        </h1>
+        <input #listTitleInput class="form-control mt-3 mb-3" type="text" value={{oldlistname}}>
+        <div class="buttons">
+          <button class="btn btn-danger" routerLink="../">Cancel</button>
+          <button class="btn btn-success" (click)="editList(listTitleInput.value)">Edit</button>
+        </div>
+      </div>
+    </div>
+  </body>

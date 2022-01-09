@@ -1,0 +1,88 @@
+<body>
+    <nav class="navbar navbar-expand-lg header-logo">
+        <div class="container">
+            <div class="logo-section">
+                <a class="navbar-brand text-white" href="#">
+                    <i class="fas fa-sticky-note" style="padding-right: 5px;margin-left: 20px;"></i>To-Do
+                </a>
+            </div>
+            <div class="headbar" style="width: 100%; text-align: center;">
+                <span class="headbar-text">Welcome</span>
+                <span class="headbar-text" id="customer_name"> {{user}}</span>
+            </div>
+            <div>
+                <button class="logout-btn" title="Logout" (click)="logout()"><i class="fas fa-sign-out-alt"></i></button>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="centered-content">
+        <div class="task-manager-container">
+            <div class="sidebar">
+                <h1 class="title">Lists</h1>
+                <div class="list-menu">
+                    <a class="list-menu-item" (click)="viewtasks(list.listname,i)" *ngFor="let list of lists,let i=index"
+                        [routerLink]="['/userhome', list.listname]" routerLinkActive="is-active">
+                        {{list.listname}}
+                    </a>
+                </div>
+                <button class="btn newlist-btn" (click)="newlistcreation()">+ New List</button>
+            </div>
+            <div class="tasks-list-container">
+                <div *ngIf="tasksdiv">
+                    <div class="top-bar">
+                        <h1 class="title">Tasks</h1>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" style="background-color: white;color: black;"
+                                type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="icon is-small" style="margin-right: 5px;">
+                                    <i class="fas fa-cog" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item"
+                                        [routerLink]="['/userhome', selectedListName, 'edit-list']">Edit</a></li>
+                                <li><a class="dropdown-item" (click)="deleteList(selectedListName)"
+                                        style="color: red;">Delete</a></li>
+                            </ul>
+                        </div>
+    
+                    </div>
+    
+    
+                   <div class="task-menu">
+                        <div class="task" *ngFor="let task of tasks,let j=index" (click)="onTaskClick(j)"
+                            [ngClass]="{ 'completed': task.completed }">
+                            <div class="task-text">
+                                <a>{{task.taskname}}</a>
+                            </div>
+                            <div class="task-buttons">
+                                <button [routerLink]="['/userhome', selectedListName, 'edit-task', task.uid]"
+                                    style="color: darkgoldenrod;" title="Edit">
+                                    <i class="fas fa-pen" (click)="edit_div(task.taskname,j)"></i>
+                                </button>
+        
+                                <button (click)="del_div(j)" title="Delete" style="margin-left: 5px;color: red;">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                   </div>
+    
+                    <h3 class="empty-state-text" *ngIf="tasks.length === 0">There are no tasks here! Click the add
+                        button to create a new task.</h3>
+    
+                    <button class="circle-add-button btn" [routerLink]="['/userhome', selectedListName, 'new-task']">
+                        <img src="../../../assets/plus-icon.svg" class="has-text-white">
+                    </button>
+    
+                </div>
+    
+    
+                <div *ngIf="!tasksdiv">
+                    <h3 class="empty-state-text">Please select a list from the sidebar</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

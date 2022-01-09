@@ -1,0 +1,58 @@
+<body>
+    <nav class="navbar navbar-expand-lg header-logo">
+        <div class="container">
+            <div class="logo-section">
+                <a class="navbar-brand text-white" href="#">
+                    <i class="fas fa-sticky-note" style="padding-right: 5px;"></i>To-Do 
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="main-div" style="padding:40px 0;">
+        <div class="login-container">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <h3 class="login-header">Sign Up</h3>
+                    <div class="login-box">
+                        <div class="login-box-content">
+                            <form [formGroup]="registerForm" autocomplete="off" (ngSubmit)="register()">
+                                <div class="mb-3">
+                                    <label for="acc_name" class="form-label label">Full Name</label>
+                                    <input type="text" name="full_name" class="form-control large" id="acc_name"
+                                        formControlName="fullname">
+                                    <span *ngIf="(this.registerForm.get('fullname')?.touched|| this.registerForm.get('fullname')?.dirty)&&
+                                this.registerForm.get('fullname')?.errors" style="color:red;font-size: 13px;">Invalid Name </span>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="user_name" class="form-label label">User Name</label>
+                                    <input type="text" name="account_name" class="form-control large" id="user_name"
+                                        formControlName="username">
+                                    <span *ngIf="(this.registerForm.get('username')?.touched|| this.registerForm.get('username')?.dirty)&&
+                                this.registerForm.get('username')?.errors" style="color:red;font-size: 13px;">Invalid User Name </span>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="user_password" class="form-label label">Password</label>
+                                    <input type="password" name="account_password" class="form-control large"
+                                        id="user_password" formControlName="pwd">
+                                    <span *ngIf="(this.registerForm.get('pwd')?.touched|| this.registerForm.get('pwd')?.dirty)&&
+                                            this.registerForm.get('pwd')?.errors" style="color:red;font-size: 13px;">Invalid Password
+                                    </span>
+                                </div>
+                                <button type="submit" class="btn btn-primary login-btn">Sign up</button>
+                            </form>
+                            <div class="signin-div">
+                                <a routerLink="">
+                                    <span style="color:#656565;">Already have an account?</span> Log in
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+    </main>
+
+</body>
